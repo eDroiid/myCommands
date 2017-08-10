@@ -2,6 +2,7 @@
 namespace eDroid\myCommands\tasks;
 
 use eDroid\myCommands\main as myCommands;
+use pocketmine\Server;
 use pocketmine\command\ConsoleCommandSender;
 use pocketmine\command\CommandSender;
 use pocketmine\scheduler\AsyncTask;
