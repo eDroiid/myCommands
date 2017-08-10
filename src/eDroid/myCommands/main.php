@@ -29,6 +29,8 @@ class main extends PluginBase {
 	    			}else{
 	    				$sender->sendMessage("[myCommands] Please provide a pack! or do /myCommands help");
 	    			}
+	    		}else{
+	    			$sender->sendMessage("[myCommands] /myCommands < help | run > [args]");
 	    		}
 	    	}else{
 	    		$sender->sendMessage("[myCommands] /myCommands < help | run > [args]");
