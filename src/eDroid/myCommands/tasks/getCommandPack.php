@@ -30,8 +30,10 @@ class getCommandPack extends AsyncTask {
 
         if(isset($res["commands"])){
             $this->setResult(array(false, $res["commands"]));
+        }elseif(isset($res["error"])){
+            $this->setResult(array(true, $res["error"]));
         }else{
-            $this->setResult(array(true, curl_error($curl)));
+            $this->setResult(array(true, curl_error($curl), true));
         }
     }
 
@@ -39,12 +41,15 @@ class getCommandPack extends AsyncTask {
         $mcmds = $server->getPluginManager()->getPlugin('myCommands');
         $result = $this->getResult();
         $sender = $this->fetchLocal()["sender"];
+        $errors = [
+            "non_existant" => "Command pack doesn't exist."
+        ];
 
         if(!$mcmds instanceof myCommands && !$mcmds->isEnabled()) return;
 
         if($result[0] === true){
-            $mcmds->getLogger()->warning("[myCommands] Failed retrieving command pack. Curl error: " . $this->getResult()[1]); 
-            $sender->sendMessage("[myCommands] Failed retrieving command pack: $this->pack");
+            if(isset($result[2])) $mcmds->getLogger()->warning("Failed retrieving command pack. Curl error: " . $this->getResult()[1]);
+            $sender->sendMessage("[myCommands] Failed retrieving pack '$this->pack'. Error: ".(isset($errors[$result[1]]) ? $errors[$result[1]] : $result[1]));
             return;
         }
         if($result[0] === false && empty($result[1])){
