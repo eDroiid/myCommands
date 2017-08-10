@@ -1,0 +1,23 @@
+name: myCommands
+main: eDroid\myCommands\main
+version: 1.0.0dev
+api: [3.0.0, 3.0.0-ALPHA6, 3.0.0-ALPHA7]
+load: STARTUP
+author: eDroid
+website: http://mycommands.cf/
+description: send multiple commands with one!
+
+commands:
+ mycommands:
+  aliases: [mcmds]
+  description: myCommands. /myCommands help
+  permission: mycommands.command
+
+permissions:
+  mycommands:
+    default: op
+    description: myCommands Perm
+    children:
+      mycommands.command:
+        default: op
+        description: /mycommands
