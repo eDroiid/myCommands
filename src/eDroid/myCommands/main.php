@@ -14,7 +14,7 @@ class main extends PluginBase {
 	}
 	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
 		$cmd = strtolower($command->getName());
-	    if($cmd == "myCommands"){
+	    if($cmd == "mycommands"){
 	    	if(isset($args[0])){
 	    		if($args[0] == "help"){
 	    			$sender->sendMessage("[myCommands] Run a multiple amount of commands of any lengths with ease!");
