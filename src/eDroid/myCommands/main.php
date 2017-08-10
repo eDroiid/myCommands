@@ -25,7 +25,7 @@ class main extends PluginBase {
 	    		}elseif($args[0] == "run"){
 	    			if(isset($args[1])){
 	    				$sender->sendMessage("[myCommands] Attempting to get command pack: " . $args[1]);
-	    				new getCommandPack($this, $sender, $args[1]);
+	    				$this->getServer()->getScheduler()->scheduleAsyncTask(new getCommandPack($sender, $args[1]));
 	    			}else{
 	    				$sender->sendMessage("[myCommands] Please provide a pack! or do /myCommands help");
 	    			}
